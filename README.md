@@ -2,8 +2,10 @@
 
 Android app that leverages the [OpenLibrary API](https://openlibrary.org/developers/api) to search books and display cover images. This app is to be used as the base app for adding suggested extensions.
 
-![Imgur](http://i.imgur.com/NJmF42Yl.png)
 
+<img src='https://github.com/kkanchamreddy/android-booksearch-exercise/blob/master/demo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Overview
 
 The app does the following:
@@ -21,17 +23,7 @@ To achieve this, there are four different components in this app:
 3. `BookAdapter` - Responsible for mapping each `Book` to a particular view layout
 4. `BookListActivity` - Responsible for fetching and deserializing the data and configuring the adapter
 
-## Usage
-This app is intended to be the base project on top of which new features can be added. To use it, clone the project and import it using the following steps:
 
-![Imgur](http://i.imgur.com/joPKoTk.gif)
-
-## Suggested Extensions
-
-1. Use SearchView to search for books with a title
-2. Show ProgressBar before each network request
-3. Add a detail view to display more information about the selected book from the list
-4. Use a share intent to recommend a book to friends
 
 ## Libraries
 
