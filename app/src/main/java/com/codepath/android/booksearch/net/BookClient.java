@@ -1,5 +1,7 @@
 package com.codepath.android.booksearch.net;
 
+import android.util.Log;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -27,4 +29,18 @@ public class BookClient {
             e.printStackTrace();
         }
     }
+
+    //Method to get more details about a book
+
+    public void getBookDetails(String openBookId, JsonHttpResponseHandler handler) {
+        try {
+            String url = getApiUrl("api/books.json?format=json&jscmd=data&bibkeys=OLID:");
+            Log.d("Open BookId : ", openBookId);
+            Log.d("After Open BookId : ", URLEncoder.encode(openBookId, "utf-8"));
+            client.get(url + URLEncoder.encode(openBookId, "utf-8"), handler);
+        } catch(UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
