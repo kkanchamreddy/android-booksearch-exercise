@@ -1,13 +1,16 @@
 package com.codepath.android.booksearch.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.SearchView.*;
 
 import com.codepath.android.booksearch.R;
 import com.codepath.android.booksearch.adapters.BookAdapter;
@@ -28,6 +31,7 @@ public class BookListActivity extends ActionBarActivity {
     private ListView lvBooks;
     private BookAdapter bookAdapter;
     private BookClient client;
+    private static  int REQUEST_CODE = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +44,22 @@ public class BookListActivity extends ActionBarActivity {
         // attach the adapter to the ListView
         lvBooks.setAdapter(bookAdapter);
 
-        lvBooks.
-        // Fetch the data remotely
-        //fetchBooks("Oscar Wilde");
+        lvBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View item, int pos, long id) {
+                Intent i = new Intent(BookListActivity.this, BookDetailActivity.class);
+
+                Book selectedBook = (Book) adapter.getItemAtPosition(pos);
+                // put "extras" into the bundle for access in the second activity
+                i.putExtra("book", selectedBook);
+                startActivity(i);
+
+            }
+        });
+
     }
+
+
 
     // Executes an API call to the OpenLibrary search endpoint, parses the results
     // Converts them into an array of book objects and adds them to the adapter

@@ -1,6 +1,8 @@
 package com.codepath.android.booksearch.activities;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.android.booksearch.R;
+import com.codepath.android.booksearch.models.Book;
+import com.squareup.picasso.Picasso;
 
 public class BookDetailActivity extends ActionBarActivity {
     private ImageView ivBookCover;
@@ -24,8 +28,17 @@ public class BookDetailActivity extends ActionBarActivity {
         tvAuthor = (TextView) findViewById(R.id.tvAuthor);
 
         // Extract book object from intent extras
+        Book book = getIntent().getParcelableExtra("book");
 
         // Use book object to populate data into views
+        Picasso.with(getApplicationContext()).load(Uri.parse(book.getCoverUrl())).placeholder(R.drawable.ic_nocover).into(ivBookCover);
+        tvTitle.setText(book.getTitle());
+        tvAuthor.setText(book.getAuthor());
+
+        //update the Actionbar title
+        ActionBar actionBar = getSupportActionBar(); // or getActionBar();
+        actionBar.setTitle(book.getTitle());
+
     }
 
 
